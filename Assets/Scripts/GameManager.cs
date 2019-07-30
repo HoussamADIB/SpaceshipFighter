@@ -1,51 +1,53 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance = null;//Static instance of GameManager which allows it to be accessed by any other script.
+    private int level = 3;
+    private int score;
 
-    [SerializeField] Player player;
-    [SerializeField] Sprite[] PlayerSprites;
-
-     static Text score;
-
-    // Start is called before the first frame update
-    void Start()
+    //singleton = create one instance in the whole game, each team an object level tries to awake we destroy it unless its the first one
+    private void Awake()
     {
-        StartCoroutine(ChangeSpriteToBlue());
+        //set canva score
+        score = 0;
+
+        //Check if instance already exists
+        if (instance == null)   instance = this;
+
+        //If instance already exists and it's not this:
+        else if (instance != this)  Destroy(gameObject);
+
+        //Sets this to not be destroyed when reloading scene
+        DontDestroyOnLoad(gameObject);
     }
-
-    IEnumerator  ChangeSpriteToBlue()
+    //--------------------------------------------------------------Functions
+    public void LoadGameScene()
     {
-
-        while (true)
-        {
-            
-
-            yield return new WaitForSeconds(1.5f);
-            Debug.Log(player.GetComponent<SpriteRenderer>().sprite);
-            player.GetComponent<SpriteRenderer>().sprite = PlayerSprites[Mathf.FloorToInt(Random.Range(1,11))];
-        }
-
+        SceneManager.LoadScene("GameScene");
     }
-
-
-    private void Update()
+    public void LoadGameOver()
     {
-        
+        SceneManager.LoadScene("GameOver");
     }
-
-    static void AddScore(int points)
+    public void LoadStarMenu()
     {
-        //int myScore = int.Parse(GameManager.score.text);
-        //myScore += 100;
-        //GameManager.score.text = myScore.ToString();
-
+        SceneManager.LoadScene("StartMenu");
+    }
+    public void QuitGame()
+    {
+        //quit game
     }
 
 
-
-
+    public void addScore(int point)
+    {
+        this.score += point;
+        //set canva score
+    }
+    
 
 }

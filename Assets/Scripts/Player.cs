@@ -11,10 +11,6 @@ public class Player : MonoBehaviour
 {
     //--------------------------------------------------------------Properties
     /*Editor Inputs*/
-
-
-
-
     [SerializeField] float padding;
     [SerializeField] float moveSpeed;
     [SerializeField] float laserSpeed;
@@ -27,22 +23,15 @@ public class Player : MonoBehaviour
     private Vector3 initialPos;
     private Vector3 actualPos;
     private Coroutine firingCoroutine;
-
     private bool touchStart = false;
-    
-
     [SerializeField] public Transform circle;
     [SerializeField] public Transform outerCircle;
-
     /*Boundaries*/
     private float xMin;
     private float xMax;
     private float yMin;
     private float yMax;
     //--------------------------------------------------------------Functions//
-
-    
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -122,7 +111,7 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
         Debug.Log("player died");
         AudioSource.PlayClipAtPoint(PlayerDeathSound, Camera.main.transform.position);
-        Level.instance.LoadGameOver();
+        GameManager.instance.LoadGameOver();
     }
     private void Fire()
     {

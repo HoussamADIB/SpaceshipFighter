@@ -5,19 +5,13 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-
     public static bool gamePaused = false;
     [SerializeField] GameObject PauseMenuUI;
     [SerializeField] Player player;
-
-
-
-
     [SerializeField] Sprite blueSprite;
     [SerializeField] Sprite redSprite;
     [SerializeField] Sprite greenSprite;
     [SerializeField] Sprite orangeSprite;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +72,4 @@ public class PauseMenu : MonoBehaviour
     {
         player.GetComponent<SpriteRenderer>().sprite = orangeSprite;
     }
-
-
-
 }
