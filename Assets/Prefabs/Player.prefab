@@ -46,13 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   padding: 0.25
-  moveSpeed: 6.5
+  moveSpeed: 4
   laserSpeed: 20
   health: 300
   laserPrefab: {fileID: 4791032817655817283, guid: dc42f72cc33d40b4fbee7696a0d7115e,
     type: 3}
   PlayerDeathSound: {fileID: 8300000, guid: f0b1906518b2faf42b7262b91cf49c8e, type: 3}
   PlayerFiringSound: {fileID: 8300000, guid: 649dc676a328dd34a8a2fcbcce32229d, type: 3}
+  circle: {fileID: 0}
+  outerCircle: {fileID: 0}
 --- !u!212 &4858758830879653486
 SpriteRenderer:
   m_ObjectHideFlags: 0

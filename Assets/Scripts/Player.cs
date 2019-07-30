@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "EnemyLaser100")
+        if (collision.gameObject.tag == "EnemyLaser100")
         {
             this.health -= 100;
             if(this.health <= 0)
@@ -109,7 +109,6 @@ public class Player : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
-        Debug.Log("player died");
         AudioSource.PlayClipAtPoint(PlayerDeathSound, Camera.main.transform.position);
         GameManager.instance.LoadGameOver();
     }

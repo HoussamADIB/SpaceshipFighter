@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     //--------------------------------------------------------------Properties
+    private GameManager instance;
     /*Set Settings*/
     private EnemyWaveConfig enemyWaveConfig;
     /*Imported Settings from Setters*/
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
     }
     private void Initialization()
     {
+        instance = FindObjectOfType<GameManager>();
         checkPoint = 0;
         if (enemyWaveConfig != null)
         {
@@ -52,6 +54,11 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Laser100")
         {
             this.health -= 100;
+            if (instance != null)
+            {
+                instance.addScore(100);
+            }
+            
             //int myScore = int.Parse(GameManager.score.text);
             //myScore += 100;
             //GameManager.score.text = myScore.ToString();
@@ -59,7 +66,14 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.tag == "Laser200")
         {
             this.health -= 200;
+            if (instance != null)
+            {
+                instance.addScore(200);
+            }
         }
+
+
+
         if (this.health <= 0)
         {
             Die();

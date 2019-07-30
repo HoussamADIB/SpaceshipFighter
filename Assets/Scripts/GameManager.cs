@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;//Static instance of GameManager which allows it to be accessed by any other script.
-    private int level = 3;
-    private int score;
-
+    //private int level;
+    [SerializeField] int score;
+    GameObject FinalScore;
     //singleton = create one instance in the whole game, each team an object level tries to awake we destroy it unless its the first one
     private void Awake()
     {
@@ -32,7 +33,25 @@ public class GameManager : MonoBehaviour
     public void LoadGameOver()
     {
         SceneManager.LoadScene("GameOver");
+
+        Invoke("SetFinalScore", 0.1f );
+        
     }
+    private void SetFinalScore()
+    {
+        FinalScore = GameObject.Find("Final Score");
+        if (FinalScore != null)
+        {
+            TextMeshProUGUI scoreText = FinalScore.GetComponent<TextMeshProUGUI>();
+            scoreText.text = "Score : " + getScore().ToString();
+        }
+        else
+        {
+            Debug.Log("Final Score is null . . .");
+        }
+    }
+
+
     public void LoadStarMenu()
     {
         SceneManager.LoadScene("StartMenu");
@@ -42,11 +61,14 @@ public class GameManager : MonoBehaviour
         //quit game
     }
 
-
-    public void addScore(int point)
+    public int getScore()
     {
-        this.score += point;
-        //set canva score
+        return this.score;
+    }
+
+    public void addScore(int points)
+    {
+        this.score += points;
     }
     
 

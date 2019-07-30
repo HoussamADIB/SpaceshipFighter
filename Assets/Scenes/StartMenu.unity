@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 6496680695686471326, guid: c4579a8b26ca11b48bbd7fa17f471543,
         type: 3}
       propertyPath: m_Name
-      value: LevelManager
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 7464870021524855676, guid: c4579a8b26ca11b48bbd7fa17f471543,
         type: 3}
@@ -322,7 +322,7 @@ PrefabInstance:
     - target: {fileID: 7394350970583592099, guid: 23eec0f66caf74b409128b9e0cab21c6,
         type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: StartCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 7394350970583592111, guid: 23eec0f66caf74b409128b9e0cab21c6,
         type: 3}
@@ -428,26 +428,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394350970977882877, guid: 23eec0f66caf74b409128b9e0cab21c6,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394350970977882877, guid: 23eec0f66caf74b409128b9e0cab21c6,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394350970977882877, guid: 23eec0f66caf74b409128b9e0cab21c6,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394350970977882877, guid: 23eec0f66caf74b409128b9e0cab21c6,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23eec0f66caf74b409128b9e0cab21c6, type: 3}
