@@ -52,6 +52,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
         gamePaused = true;
     }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 
     private void HideJoystick()
     {

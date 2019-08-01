@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         if (FinalScore != null)
         {
             TextMeshProUGUI scoreText = FinalScore.GetComponent<TextMeshProUGUI>();
-            scoreText.text = "Score : " + getScore().ToString();
+            scoreText.text = getScore().ToString();
         }
         else
         {
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     }
     public void QuitGame()
     {
-        //quit game
+        Application.Quit();
     }
 
     public int getScore()

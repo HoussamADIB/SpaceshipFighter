@@ -429,5 +429,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7394350970583592097, guid: 23eec0f66caf74b409128b9e0cab21c6,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394350970977882877, guid: 23eec0f66caf74b409128b9e0cab21c6,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394350970977882877, guid: 23eec0f66caf74b409128b9e0cab21c6,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23eec0f66caf74b409128b9e0cab21c6, type: 3}
