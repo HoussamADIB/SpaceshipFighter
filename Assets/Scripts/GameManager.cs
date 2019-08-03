@@ -16,6 +16,19 @@ public class GameManager : MonoBehaviour
         //set canva score
         score = 0;
 
+
+        GameData data = SaveSystem.loadData();
+        if (data != null)
+        {
+            Debug.Log("DATA LOADED = " + data.maxScore);
+            score = data.maxScore;
+        }
+        else
+        {
+            Debug.Log("DATA LOADED is null");
+        }
+
+
         //Check if instance already exists
         if (instance == null)   instance = this;
 
@@ -32,6 +45,9 @@ public class GameManager : MonoBehaviour
     }
     public void LoadGameOver()
     {
+        GameData data = new GameData(score);
+        SaveSystem.saveData(data);
+        Debug.Log("SAVING DATA . . . .");
         SceneManager.LoadScene("GameOver");
 
         Invoke("SetFinalScore", 0.1f );
@@ -58,6 +74,8 @@ public class GameManager : MonoBehaviour
     }
     public void QuitGame()
     {
+        
+
         Application.Quit();
     }
 
