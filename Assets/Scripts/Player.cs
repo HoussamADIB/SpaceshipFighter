@@ -14,18 +14,22 @@ public class Player : MonoBehaviour
     [SerializeField] float padding;
     [SerializeField] float moveSpeed;
     [SerializeField] float laserSpeed;
-    [SerializeField] int health;
+    [SerializeField] int initialHealth;
+    
     [SerializeField] GameObject laserPrefab;
     [SerializeField] AudioClip PlayerDeathSound;
     [SerializeField] AudioClip PlayerFiringSound;
+
+    [SerializeField] public Transform circle;
+    [SerializeField] public Transform outerCircle;
     //
     private Rigidbody2D rb;
     private Vector3 initialPos;
     private Vector3 actualPos;
     private Coroutine firingCoroutine;
     private bool touchStart = false;
-    [SerializeField] public Transform circle;
-    [SerializeField] public Transform outerCircle;
+    private int health;
+    private HealthDisplay healthDisplay;
     /*Boundaries*/
     private float xMin;
     private float xMax;
@@ -34,17 +38,21 @@ public class Player : MonoBehaviour
     //--------------------------------------------------------------Functions//
     private void Start()
     {
+        health = initialHealth;
+        HealthDisplay[] Childs = GetComponentsInChildren<HealthDisplay>();
+        if (Childs.Length == 1 && initialHealth != 0)
+        {
+            healthDisplay = Childs[0];
+            healthDisplay.initiate(initialHealth);
+        }
+
         rb = GetComponent<Rigidbody2D>();
         SetUpBoundaries();
         firingCoroutine = StartCoroutine(fireContiniously());
     }
     private void Update()
     {
-        if (Time.timeScale != 0)//Move only when in-game (when in-menu timescale = 0)
-        {
-            Move();
-        }
-        
+        if (Time.timeScale != 0) Move();
         Fire();
     }
     private void FixedUpdate()
@@ -74,10 +82,8 @@ public class Player : MonoBehaviour
             outerCircle.GetComponent<SpriteRenderer>().enabled = true;
             //
         }
-        if(Input.GetMouseButton(0))
-        {
-            touchStart = true;
-        }
+        if(Input.GetMouseButton(0)) touchStart = true;
+
         else if(Input.GetMouseButtonUp(0))
         {
             touchStart = false;
@@ -97,16 +103,16 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "EnemyLaser100")
+        if (healthDisplay != null)
         {
-            this.health -= 100;
-            if(this.health <= 0)
+            if (collision.gameObject.tag == "EnemyLaser100")
             {
-                Die();
+                health = healthDisplay.Damage(100);
+                if (health == 0) Die();
             }
         }
     }
-    private void Die()
+    public void Die()
     {
         Destroy(gameObject);
         AudioSource.PlayClipAtPoint(PlayerDeathSound, Camera.main.transform.position);
@@ -114,16 +120,8 @@ public class Player : MonoBehaviour
     }
     private void Fire()
     {
-
-        
-        if (Input.GetButtonDown("Fire1"))
-        {
-            StopCoroutine(firingCoroutine);
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            firingCoroutine = StartCoroutine(fireContiniously());
-        }
+        if (Input.GetButtonDown("Fire1")) StopCoroutine(firingCoroutine);
+        if (Input.GetButtonUp("Fire1")) firingCoroutine = StartCoroutine(fireContiniously());
     }
     private IEnumerator fireContiniously()
     {
